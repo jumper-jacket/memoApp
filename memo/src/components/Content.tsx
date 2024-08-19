@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import EditForm from './EditForm';
-import { Notes } from '../App';
+import { Notes } from '../types/types';
 
-type ContentProps = {
-  note: Notes;
-  onSave: (id: number, updatedTitle: string, updatedContent: string) => void;
+export type ContentProps = {
+  note: Notes | null ;
+  onSave: (updatedNote: Notes) => void;
 };
 
-const Content = ( note: Notes, onSave: (note: Notes) => void ) => {
+export type EditFormProps = {
+  note: Notes;
+  onSave: (updatedNote: Notes) => void;
+  onCancel: () => void;
+};
+
+
+const Content = ({ note, onSave }: ContentProps ) => {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!note) {
@@ -19,8 +26,8 @@ const Content = ( note: Notes, onSave: (note: Notes) => void ) => {
       {isEditing ? (
         <EditForm
           note={note}
-          onSave={(notes) => {
-            onSave(notes.id);
+          onSave={(updatedNotenote) => {
+            onSave(updatedNotenote);
             setIsEditing(false);
           }}
           onCancel={() => setIsEditing(false)}

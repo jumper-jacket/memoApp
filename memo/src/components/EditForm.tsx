@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { EditFormProps } from './Content';
+import { Notes } from '../types/types';
 
-type EditFormProps = {
-  note: { id: number; title: string; content: string };
-  onSave: (id: number, updatedTitle: string, updatedContent: string) => void;
-  onCancel: () => void;
-};
-
-const EditForm: React.FC<EditFormProps> = ({ note, onSave, onCancel }) => {
+const EditForm = ({ note, onSave, onCancel } : EditFormProps) => {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
 
   const handleSave = () => {
-    onSave(note.id, title, content);
+    onSave(note);
   };
 
   return (

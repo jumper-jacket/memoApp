@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import DeleteLocalStorage from './components/DeleteLocalStorage';
+import { Notes } from './types/types';
 
 const STORAGE_KEY = 'memoAppNotes';
-
-export type Notes = {
-  id: number;
-  title: string;
-  content: string;
-};
 
 
 const App = () => {
@@ -18,7 +13,6 @@ const App = () => {
 
   useEffect(() => {
     const savedNotes = localStorage.getItem(STORAGE_KEY);
-
     if (!savedNotes) {
       setNotes([
         { id: 1, title: 'メモ 1', content: 'これはメモ 1 の内容です。' },
