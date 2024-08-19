@@ -1,3 +1,4 @@
+//後メモの追加処理に書き換える
 import React from 'react';
 
 const ClearStorageButton: React.FC = () => {

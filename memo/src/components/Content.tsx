@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import EditForm from './EditForm';
+import { Notes } from '../App';
 
 type ContentProps = {
-  note: { id: number; title: string; content: string } | null;
+  note: Notes;
   onSave: (id: number, updatedTitle: string, updatedContent: string) => void;
 };
 
-const Content: React.FC<ContentProps> = ({ note, onSave }) => {
+const Content = ( note: Notes, onSave: (note: Notes) => void ) => {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!note) {
@@ -18,8 +19,8 @@ const Content: React.FC<ContentProps> = ({ note, onSave }) => {
       {isEditing ? (
         <EditForm
           note={note}
-          onSave={(id, title, content) => {
-            onSave(id, title, content);
+          onSave={(notes) => {
+            onSave(notes.id);
             setIsEditing(false);
           }}
           onCancel={() => setIsEditing(false)}

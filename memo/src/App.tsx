@@ -5,13 +5,14 @@ import DeleteLocalStorage from './components/DeleteLocalStorage';
 
 const STORAGE_KEY = 'memoAppNotes';
 
-type Notes = {
-  id: number,
-  title: string,
-  content: string,
+export type Notes = {
+  id: number;
+  title: string;
+  content: string;
 };
 
-const App: React.FC = () => {
+
+const App = () => {
   const [notes, setNotes] = useState<Notes[]>([]);
   const [selectedNote, setSelectedNote] = useState<number | null>(null);
 
@@ -35,11 +36,10 @@ const App: React.FC = () => {
     setSelectedNote(id);
   };
 
-  const handleSaveNote = (id: number, updatedTitle: string, updatedContent: string) => {
+  const handleSaveNote = (updatedNote: Notes) => {
     setNotes((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === id ? { ...note, title: updatedTitle, content: updatedContent } : note
-      )
+        updatedNote.id === note.id ? updatedNote : note )
     );
   };
 
