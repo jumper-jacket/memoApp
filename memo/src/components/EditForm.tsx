@@ -7,7 +7,8 @@ const EditForm = ({ note, onSave, onCancel } : EditFormProps) => {
   const [content, setContent] = useState(note.content);
 
   const handleSave = () => {
-    onSave(note);
+    const updatedNote = { ...note, title, content};
+    onSave(updatedNote);
   };
 
   return (
@@ -16,7 +17,7 @@ const EditForm = ({ note, onSave, onCancel } : EditFormProps) => {
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) => {setTitle(e.target.value); console.log(e.target.value); console.log(note)}}
         className="w-full mb-2 p-2 border"
         placeholder="タイトル"
       />

@@ -3,7 +3,7 @@ import EditForm from './EditForm';
 import { Notes } from '../types/types';
 
 export type ContentProps = {
-  note: Notes | null ;
+  note: Notes;
   onSave: (updatedNote: Notes) => void;
 };
 

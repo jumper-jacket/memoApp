@@ -13,7 +13,9 @@ const App = () => {
 
   useEffect(() => {
     const savedNotes = localStorage.getItem(STORAGE_KEY);
-    if (!savedNotes) {
+    if(savedNotes && savedNotes!=='[]'){
+      setNotes(JSON.parse(savedNotes));
+    }else{
       setNotes([
         { id: 1, title: 'メモ 1', content: 'これはメモ 1 の内容です。' },
         { id: 2, title: 'メモ 2', content: 'これはメモ 2 の内容です。' },
@@ -37,12 +39,12 @@ const App = () => {
     );
   };
 
-  const selectedNoteContent = notes.find((note) => note.id === selectedNote) || null;
+  const selectedNoteContent = notes.find((note) => note.id === selectedNote);
 
   return (
     <div className="flex h-screen">
       <Sidebar notes={notes} onSelect={handleSelectNote} />
-      <Content note={selectedNoteContent} onSave={handleSaveNote} />
+      <Content note={selectedNoteContent ? selectedNoteContent : {id: 0, title:"未選択", content:"ノートが選択されていません"}} onSave={handleSaveNote} />
       <DeleteLocalStorage />
     </div>
   );
