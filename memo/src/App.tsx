@@ -14,17 +14,13 @@ const App = () => {
   useEffect(() => {
     const savedNotes = localStorage.getItem(STORAGE_KEY);
     if(savedNotes && savedNotes!=='[]'){
+      console.log(true);
       setNotes(JSON.parse(savedNotes));
-    }else{
-      setNotes([
-        { id: 1, title: 'メモ 1', content: 'これはメモ 1 の内容です。' },
-        { id: 2, title: 'メモ 2', content: 'これはメモ 2 の内容です。' },
-        { id: 3, title: 'メモ 3', content: 'これはメモ 3 の内容です。' },
-      ]);
     }
   }, []);
 
   useEffect(() => {
+    console.log("setItemFn", STORAGE_KEY, JSON.stringify(notes));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
