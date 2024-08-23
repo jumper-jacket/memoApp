@@ -1,8 +1,9 @@
 import React from 'react';
+//import { AddMemoButton } from './AddMemo';
 
 type SidebarProps = {
-  notes: { id: number; title: string }[];
-  onSelect: (id: number) => void;
+  notes: { id: string; title: string }[];
+  onSelect: (id: string) => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ notes, onSelect }) => {

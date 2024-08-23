@@ -9,12 +9,11 @@ const STORAGE_KEY = 'memoAppNotes';
 
 const App = () => {
   const [notes, setNotes] = useState<Notes[]>([]);
-  const [selectedNote, setSelectedNote] = useState<number | null>(null);
+  const [selectedNote, setSelectedNote] = useState<string | null>(null);
 
   useEffect(() => {
     const savedNotes = localStorage.getItem(STORAGE_KEY);
     if(savedNotes && savedNotes!=='[]'){
-      console.log(true);
       setNotes(JSON.parse(savedNotes));
     }
   }, []);
@@ -24,7 +23,7 @@ const App = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
-  const handleSelectNote = (id: number) => {
+  const handleSelectNote = (id: string) => {
     setSelectedNote(id);
   };
 
@@ -40,7 +39,7 @@ const App = () => {
   return (
     <div className="flex h-screen">
       <Sidebar notes={notes} onSelect={handleSelectNote} />
-      <Content note={selectedNoteContent ? selectedNoteContent : {id: 0, title:"未選択", content:"ノートが選択されていません"}} onSave={handleSaveNote} />
+      <Content note={selectedNoteContent ? selectedNoteContent : {id: "0", title:"未選択", content:"ノートが選択されていません"}} onSave={handleSaveNote} />
       <DeleteLocalStorage />
     </div>
   );
