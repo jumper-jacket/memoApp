@@ -6,7 +6,7 @@ type SidebarProps = {
   onSelect: (id: string) => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ notes, onSelect }) => {
+const Sidebar = ({ notes, onSelect } : SidebarProps) => {
   return (
     <div className="w-1/4 bg-slate-900 text-white p-4">
       <h3 className="text-xl mb-4">メモ一覧</h3>

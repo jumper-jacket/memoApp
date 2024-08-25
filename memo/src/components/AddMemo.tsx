@@ -1,10 +1,20 @@
 //後メモの追加処理に書き換える
-import React from 'react';
+import { useState } from 'react';
 import { Notes } from '../types/types';
 
-const AddMemoButton = () => {
-  const handleAddStorage = () => {
+type AddMemoProps = {
+  onAddNote: (addedNote: Notes) => void;
+};
 
+const AddMemoButton = ({ onAddNote }: AddMemoProps) => {
+
+  const handleAddStorage = () => {
+    const newMemo: Notes = {
+      id: genrateID(),
+      title: "新しいメモ",
+      content: "",
+    };
+    onAddNote(newMemo);
   };
 
   function genrateID(): string {
@@ -12,15 +22,9 @@ const AddMemoButton = () => {
   }
   
 
-  const newMemo: Notes = {
-    id: genrateID(),
-    title: "新しいメモ",
-    content: ""
-  }
-
   return (
     <div className='flex flex-col-reverse'>
-        <button onClick={handleAddStorage} className="bg-red-500 text-white p-2 rounded">
+        <button onClick={handleAddStorage} className="font-bold bg-green-500 text-white p-2 rounded">
           メモの追加
         </button>
     </div>

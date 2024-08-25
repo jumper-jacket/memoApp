@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import DeleteLocalStorage from './components/DeleteLocalStorage';
 import { Notes } from './types/types';
+import AddMemoButton from './components/AddMemo';
 
 const STORAGE_KEY = 'memoAppNotes';
 
@@ -27,6 +28,10 @@ const App = () => {
     setSelectedNote(id);
   };
 
+  const handleAddNote = (newNote: Notes) => {
+    setNotes(prevNotes => [...prevNotes, newNote]);
+  };
+
   const handleSaveNote = (updatedNote: Notes) => {
     setNotes((prevNotes) =>
       prevNotes.map((note) =>
@@ -40,6 +45,7 @@ const App = () => {
     <div className="flex h-screen">
       <Sidebar notes={notes} onSelect={handleSelectNote} />
       <Content note={selectedNoteContent ? selectedNoteContent : {id: "0", title:"未選択", content:"ノートが選択されていません"}} onSave={handleSaveNote} />
+      <AddMemoButton onAddNote={handleAddNote}/>
       <DeleteLocalStorage />
     </div>
   );
