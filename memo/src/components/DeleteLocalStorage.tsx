@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ClearStorageButton: React.FC = () => {
+const ClearStorageButton = () => {
   const handleClearStorage = () => {
     localStorage.removeItem('memoAppNotes');
     window.location.reload();  

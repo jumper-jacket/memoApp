@@ -1,6 +1,3 @@
-import React from 'react';
-//import { AddMemoButton } from './AddMemo';
-
 type SidebarProps = {
   notes: { id: string; title: string }[];
   onSelect: (id: string) => void;

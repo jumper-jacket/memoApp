@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import EditForm from './EditForm';
 import { Notes } from '../types/types';
+import DeleteMemo from './DeleteMemo';
 
 export type ContentProps = {
   note: Notes;
@@ -44,6 +45,7 @@ const Content = ({ note, onSave }: ContentProps ) => {
           </button>
         </div>
       )}
+      <DeleteMemo note={note} />
     </div>
   );
 };

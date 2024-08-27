@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { EditFormProps } from './Content';
-import { Notes } from '../types/types';
 
 const EditForm = ({ note, onSave, onCancel } : EditFormProps) => {
   const [title, setTitle] = useState(note.title);
