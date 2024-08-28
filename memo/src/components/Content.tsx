@@ -5,7 +5,9 @@ import DeleteMemo from './DeleteMemo';
 
 export type ContentProps = {
   note: Notes;
+  notes: Notes[];
   onSave: (updatedNote: Notes) => void;
+  onSaveAll: (newNote: Notes[]) => void;
 };
 
 export type EditFormProps = {
@@ -15,7 +17,7 @@ export type EditFormProps = {
 };
 
 
-const Content = ({ note, onSave }: ContentProps ) => {
+const Content = ({ note, notes, onSave, onSaveAll }: ContentProps ) => {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!note) {
@@ -45,7 +47,7 @@ const Content = ({ note, onSave }: ContentProps ) => {
           </button>
         </div>
       )}
-      <DeleteMemo note={note} />
+      <DeleteMemo note={note} notes={notes} onSaveAll={onSaveAll} />
     </div>
   );
 };

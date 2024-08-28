@@ -1,17 +1,19 @@
 import { Notes } from '../types/types';
 
 type DeleteMemoProps = {
-    note: Notes
+    note: Notes;
+    notes: Notes[];
+    onSaveAll: (newNote: Notes[]) => void;
 };
 
-const DeleteMemo = ({ note }: DeleteMemoProps) => {
+const DeleteMemo = ({ note, notes, onSaveAll }: DeleteMemoProps) => {
     const handleDelete = () => {
-        //localStorage.removeItem(note.id);
-        //1window.location.reload();  
+        const deletedNotes = notes.filter(memo => memo.id !== note.id);
+        onSaveAll(deletedNotes);
     }
 
     return (<>
-    <button onClick={handleDelete} className="font-bold text-white bg-red-500">
+    <button onClick={handleDelete} className="font-bold text-white bg-red-500 rounded-md p-1">
        メモを削除 
     </button>
     </>);
